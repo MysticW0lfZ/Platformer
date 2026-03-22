@@ -9,15 +9,24 @@ public class GameOverController : MonoBehaviour
 
     void Start()
     {
-        int finalScore = GameManager.Instance.GetScore();
-        Debug.Log("Final Score: " + finalScore);
+        if (GameManager.Instance != null)
+        {
+            int finalScore = GameManager.Instance.GetScore();
+            Debug.Log("Final Score: " + finalScore);
 
-        scoreText.text = "Final Score: " + finalScore;
+            scoreText.text = "Final Score: " + finalScore;
+        }
     }
 
     public void RestartGame()
     {
-        GameManager.Instance.ResetGame();
+        Debug.Log("Restart Clicked");
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetGame();
+        }
+
         SceneManager.LoadScene("GameScene");
     }
 }

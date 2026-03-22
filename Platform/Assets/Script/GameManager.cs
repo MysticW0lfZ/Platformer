@@ -40,9 +40,19 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "GameScene")
         {
-            coinsRemaining = GameObject.FindGameObjectsWithTag("Coin").Length;
-            Debug.Log("Coins Reset: " + coinsRemaining);
+            Debug.Log("Scene Loaded - waiting for pool to set coins");
+
+            // Update UI
+            onScoreChanged?.Invoke(score);
+            onHealthChanged?.Invoke(health);
         }
+    }
+
+    
+    public void SetTotalCoins(int total)
+    {
+        coinsRemaining = total;
+        Debug.Log("Coins Set To: " + coinsRemaining);
     }
 
     public void AddScore(int points)
@@ -86,8 +96,5 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         health = 100;
-
-        onScoreChanged?.Invoke(score);
-        onHealthChanged?.Invoke(health);
     }
 }
